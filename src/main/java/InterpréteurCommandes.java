@@ -1,6 +1,9 @@
 import java.util.Objects;
 
+import static java.lang.Integer.parseInt;
+
 public class InterpréteurCommandes {
+    public static final String CRÉER_OFFRE = "offre";
     private final CréerOffre créerOffre;
 
     public InterpréteurCommandes(Sortie sortie, CréerOffre créerOffre, SouscrireOffre b, ConsulterChiffreAffaires c) {
@@ -8,11 +11,13 @@ public class InterpréteurCommandes {
     }
 
     public void exécuter(String offreCommande) {
-        if (!Objects.equals(offreCommande.split(" ")[0], "offre"))
-            throw new UnsupportedOperationException("not yet implemented");
+        String commande = offreCommande.split(" ")[0];
 
-        var type = TypeOffre.MENSUELLE;
+        if (!Objects.equals(commande, CRÉER_OFFRE)) {
+            throw new UnsupportedOperationException("not yet implemented");
+        }
+
         var prixParMois = offreCommande.split(" ")[2];
-        créerOffre.exécuter(type, Integer.parseInt(prixParMois));
+        créerOffre.exécuter(TypeOffre.MENSUELLE, parseInt(prixParMois));
     }
 }

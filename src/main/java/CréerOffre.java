@@ -1,3 +1,3 @@
 public interface CréerOffre {
-    void exécuter(TypeOffre type, int prixEnEuros);
+    void exécuter(TypeOffre type, Integer prixEnEuros);
 }

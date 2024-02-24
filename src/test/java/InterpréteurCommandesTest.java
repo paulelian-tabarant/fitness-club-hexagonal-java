@@ -12,14 +12,14 @@ class InterpréteurCommandesTest {
 
     @Test
     void créeUneOffre() {
-        // given
+        // avec
         var créerOffreCommande = "offre mensuelle 30";
 
-        // when
+        // quand
         new InterpréteurCommandes(sortie, créerOffre, souscrireOffre, consulterCA)
                 .exécuter(créerOffreCommande);
 
-        // then
+        // on a
         verify(créerOffre).exécuter(TypeOffre.MENSUELLE, 30);
     }
 
