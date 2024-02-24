@@ -18,7 +18,7 @@ public class FirstIterationAcceptanceTest {
 
         var salle = new SalleDeFitness();
         var sortie = mock(Sortie.class);
-        var commandes = new InterpréteurCommandes(sortie, salle, salle, salle);
+        var commandes = new InterpréteurCommandes(sortie, salle);
 
         commandes.exécuter(créerOffre);
         commandes.exécuter(souscrireOffre + " " + nomPersonne + " " + identifiantOffre);

@@ -6,7 +6,7 @@ public class InterpréteurCommandes {
     public static final String CRÉER_OFFRE = "offre";
     private final CréerOffre créerOffre;
 
-    public InterpréteurCommandes(Sortie sortie, CréerOffre créerOffre, SouscrireOffre b, ConsulterChiffreAffaires c) {
+    public InterpréteurCommandes(Sortie sortie, CréerOffre créerOffre) {
         this.créerOffre = créerOffre;
     }
 
