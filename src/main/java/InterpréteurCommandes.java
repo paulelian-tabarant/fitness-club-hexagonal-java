@@ -1,8 +1,18 @@
+import java.util.Objects;
+
 public class InterpréteurCommandes {
-    public InterpréteurCommandes(CréerOffre p0, SouscrireOffre b, ConsulterChiffreAffairesMensuel c) {
+    private final CréerOffre créerOffre;
+
+    public InterpréteurCommandes(Sortie sortie, CréerOffre créerOffre, SouscrireOffre b, ConsulterChiffreAffaires c) {
+        this.créerOffre = créerOffre;
     }
 
-    public String exécuter(String offreCommande) {
-        throw new UnsupportedOperationException("not yet implemented");
+    public void exécuter(String offreCommande) {
+        if (!Objects.equals(offreCommande.split(" ")[0], "offre"))
+            throw new UnsupportedOperationException("not yet implemented");
+
+        var type = TypeOffre.MENSUELLE;
+        var prixParMois = offreCommande.split(" ")[2];
+        créerOffre.exécuter(type, Integer.parseInt(prixParMois));
     }
 }

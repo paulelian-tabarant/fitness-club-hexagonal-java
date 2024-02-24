@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class FirstIterationAcceptanceTest {
 
@@ -16,12 +17,14 @@ public class FirstIterationAcceptanceTest {
         var consulterChiffreAffairesMensuel = "ca";
 
         var salle = new SalleDeFitness();
-        var commandes = new InterpréteurCommandes(salle, salle, salle);
+        var sortie = mock(Sortie.class);
+        var commandes = new InterpréteurCommandes(sortie, salle, salle, salle);
 
         commandes.exécuter(créerOffre);
         commandes.exécuter(souscrireOffre + " " + nomPersonne + " " + identifiantOffre);
+        commandes.exécuter(consulterChiffreAffairesMensuel);
 
-        assertEquals("30€", commandes.exécuter(consulterChiffreAffairesMensuel));
+        verify(sortie).envoyer("Chiffre d'affaires du mois : 30€");
     }
 
 }

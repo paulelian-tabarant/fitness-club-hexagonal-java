@@ -9,5 +9,5 @@ ne peut accéder à l'application qu'à cette condition.
 
 - Le `gérant` crée une `offre` de type `mensuelle` avec un `prix de base par mois` de 30€
 - Un `futur client` souscrit à l'offre
-- Le `gérant` consulte le `chiffre d'affaires` lié à ses `souscriptions` sur le mois courant
+- Le `gérant` consulte le `chiffre d'affaires` lié à ses `souscriptions` depuis la création de la salle
 - Il obtient "30 €"
