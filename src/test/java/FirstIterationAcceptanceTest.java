@@ -9,15 +9,17 @@ public class FirstIterationAcceptanceTest {
         // TODO: interagir directement avec l'entrée standard
 
         var créerOffre = "offre mensuelle 30";
+
+        var souscrireOffre = "souscrit";
+        var nomPersonne = "Gilles";
         var identifiantOffre = "mensuelle_30";
-        var souscrireOffre = "toto souscrit";
         var consulterChiffreAffairesMensuel = "ca";
 
         var salle = new SalleDeFitness();
         var commandes = new InterpréteurCommandes(salle, salle, salle);
 
         commandes.exécuter(créerOffre);
-        commandes.exécuter(souscrireOffre + " " + identifiantOffre);
+        commandes.exécuter(souscrireOffre + " " + nomPersonne + " " + identifiantOffre);
 
         assertEquals("30€", commandes.exécuter(consulterChiffreAffairesMensuel));
     }
