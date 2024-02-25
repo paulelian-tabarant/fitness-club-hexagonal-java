@@ -25,7 +25,6 @@ class InterpréteurCommandesTest {
     void prendEnCompteLaSouscriptionDUnePersonneAUneOffre() {
         // avec
         var souscrireOffreCommande = "souscrit Gilles mensuelle_30";
-        var souscrireOffre = mock(SouscrireOffre.class);
 
         // quand
         new InterpréteurCommandes(sortie, créerOffre, souscrireOffre).exécuter(souscrireOffreCommande);
