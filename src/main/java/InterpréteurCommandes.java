@@ -16,9 +16,11 @@ public class InterpréteurCommandes {
     public void exécuter(String offreCommande) {
         String commande = argumentÀ(offreCommande, 0);
 
+        var interpréteurFactory = new InterpréteurFactory(créerOffre);
+        var interpréteur = interpréteurFactory.pour(commande);
+
         if (isCréerOffre(commande)) {
-            var créerOffreInterpréteur = new CréerOffreInterpréteur(créerOffre);
-            créerOffreInterpréteur.interpréter(offreCommande);
+            interpréteur.interpréter(offreCommande);
             return;
         }
 
