@@ -8,13 +8,9 @@ public class CommandesInput {
     }
 
     public void exécuter(String offreCommande) {
-        String commande = argumentÀ(offreCommande, 0);
+        String commande = Interpréteur.argumentÀ(offreCommande, 0);
 
         new InterpréteurFactory(créerOffre, souscrireOffre).pour(commande)
                 .interpréter(offreCommande);
-    }
-
-    private static String argumentÀ(String offreCommande, int index) {
-        return offreCommande.split(" ")[index];
     }
 }

@@ -10,12 +10,9 @@ public class CréerOffreInterpréteur implements Interpréteur {
 
     @Override
     public void interpréter(String offreCommande) {
-        var prixParMois = argumentÀ(offreCommande, 2);
+        var prixParMois = Interpréteur.argumentÀ(offreCommande, 2);
 
         créerOffre.exécuter(TypeOffre.MENSUELLE, parseInt(prixParMois));
     }
 
-    private static String argumentÀ(String offreCommande, int index) {
-        return offreCommande.split(" ")[index];
-    }
 }
