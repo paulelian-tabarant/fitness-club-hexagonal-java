@@ -2,13 +2,13 @@ import java.util.Objects;
 
 import static java.lang.Integer.parseInt;
 
-public class InterpréteurCommandes {
+public class CommandesInput {
     public static final String CRÉER_OFFRE = "offre";
     public static final String SOUSCRIRE_OFFRE = "souscrit";
     private final CréerOffre créerOffre;
     private final SouscrireOffre souscrireOffre;
 
-    public InterpréteurCommandes(Sortie sortie, CréerOffre créerOffre, SouscrireOffre souscrireOffre) {
+    public CommandesInput(Sortie sortie, CréerOffre créerOffre, SouscrireOffre souscrireOffre) {
         this.créerOffre = créerOffre;
         this.souscrireOffre = souscrireOffre;
     }
@@ -16,7 +16,7 @@ public class InterpréteurCommandes {
     public void exécuter(String offreCommande) {
         String commande = argumentÀ(offreCommande, 0);
 
-        var interpréteurFactory = new InterpréteurFactory(créerOffre);
+        var interpréteurFactory = new InterpréteurFactory(créerOffre, souscrireOffre);
         var interpréteur = interpréteurFactory.pour(commande);
 
         if (isCréerOffre(commande)) {
@@ -25,9 +25,7 @@ public class InterpréteurCommandes {
         }
 
         if (isSouscrireOffre(commande)) {
-            var nomPersonne = argumentÀ(offreCommande, 1);
-            var identifiantOffre = argumentÀ(offreCommande, 2);
-            souscrireOffre.exécuter(nomPersonne, identifiantOffre);
+            interpréteur.interpréter(offreCommande);
             return;
         }
 

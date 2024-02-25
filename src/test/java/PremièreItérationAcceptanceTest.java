@@ -11,7 +11,7 @@ public class PremièreItérationAcceptanceTest {
         var salle = new SalleDeFitness(new OffresEnMémoire(), new SouscriptionsEnMémoire());
         var sortie = mock(Sortie.class);
 
-        var commandes = new InterpréteurCommandes(sortie, salle, salle);
+        var commandes = new CommandesInput(sortie, salle, salle);
 
         commandes.exécuter("offre mensuelle 30");
         commandes.exécuter("souscrit Gilles mensuelle_30");

@@ -1,11 +1,24 @@
-public class InterpréteurFactory {
-    private final CréerOffre créerOffre;
+import java.util.Objects;
 
-    public InterpréteurFactory(CréerOffre créerOffre) {
+public class InterpréteurFactory {
+    public static final String CRÉER_OFFRE = "offre";
+    private final CréerOffre créerOffre;
+    private final SouscrireOffre souscrireOffre;
+
+    public InterpréteurFactory(CréerOffre créerOffre, SouscrireOffre souscrireOffre) {
         this.créerOffre = créerOffre;
+        this.souscrireOffre = souscrireOffre;
     }
 
     public Interpréteur pour(String commande) {
-        return new CréerOffreInterpréteur(créerOffre);
+        if (isCréerOffre(commande)) {
+            return new CréerOffreInterpréteur(créerOffre);
+        }
+
+        return new SouscrireOffreInterpréteur(souscrireOffre);
+    }
+
+    private static boolean isCréerOffre(String commande) {
+        return Objects.equals(commande, CRÉER_OFFRE);
     }
 }
