@@ -12,9 +12,8 @@ public class CommandesInput {
     public void exécuter(String offreCommande) {
         String commande = argumentÀ(offreCommande, 0);
 
-        var interpréteur = new InterpréteurFactory(créerOffre, souscrireOffre).pour(commande);
-
-        interpréteur.interpréter(offreCommande);
+        new InterpréteurFactory(créerOffre, souscrireOffre).pour(commande)
+                .interpréter(offreCommande);
     }
 
     private static String argumentÀ(String offreCommande, int index) {
