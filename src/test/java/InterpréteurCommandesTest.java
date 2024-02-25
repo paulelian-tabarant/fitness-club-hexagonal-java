@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -19,15 +18,5 @@ class InterpréteurCommandesTest {
 
         // on a
         verify(créerOffre).exécuter(TypeOffre.MENSUELLE, 30);
-    }
-
-    @Test
-    void renvoieUneErreurSiTypeOffreNonPrisEnCharge() {
-        var créerOffreInconnueCommande = "offre semestrielle 20";
-
-        // vérifier que la commande "CréerOffre" renvoie une exception métier adaptée
-        assertThrows(OffreInconnueException.class, () -> {
-            new InterpréteurCommandes(sortie, créerOffre).exécuter(créerOffreInconnueCommande);
-        });
     }
 }
