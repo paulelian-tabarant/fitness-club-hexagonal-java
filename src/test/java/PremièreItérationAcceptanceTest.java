@@ -16,7 +16,7 @@ public class PremièreItérationAcceptanceTest {
         var identifiantOffre = "mensuelle_30";
         var consulterChiffreAffairesMensuel = "ca";
 
-        var salle = new SalleDeFitness(new OffresEnMémoire());
+        var salle = new SalleDeFitness(new OffresEnMémoire(), new SouscriptionsEnMémoire());
         var sortie = mock(Sortie.class);
         var commandes = new InterpréteurCommandes(sortie, salle, salle);
 

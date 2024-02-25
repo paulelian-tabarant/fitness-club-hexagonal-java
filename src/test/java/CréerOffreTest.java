@@ -9,9 +9,10 @@ class CréerOffreTest {
     void créeUneOffre() {
         // avec
         var offres = mock(Offres.class);
+        var souscriptions = mock(Souscriptions.class);
 
         // quand
-        new SalleDeFitness(offres).exécuter(TypeOffre.MENSUELLE, 30);
+        new SalleDeFitness(offres, souscriptions).exécuter(TypeOffre.MENSUELLE, 30);
 
         // alors
         verify(offres).créer(TypeOffre.MENSUELLE, 30);
