@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class FirstIterationAcceptanceTest {
+public class PremièreItérationAcceptanceTest {
 
     @Test
     void afficheChiffreAffairesAprèsCréationOffreEtSouscription() {
@@ -18,7 +18,7 @@ public class FirstIterationAcceptanceTest {
 
         var salle = new SalleDeFitness(new OffresEnMémoire());
         var sortie = mock(Sortie.class);
-        var commandes = new InterpréteurCommandes(sortie, salle);
+        var commandes = new InterpréteurCommandes(sortie, salle, salle);
 
         commandes.exécuter(créerOffre);
         commandes.exécuter(souscrireOffre + " " + nomPersonne + " " + identifiantOffre);

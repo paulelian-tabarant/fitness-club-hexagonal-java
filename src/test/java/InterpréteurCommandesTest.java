@@ -6,6 +6,7 @@ import static org.mockito.Mockito.verify;
 class InterpréteurCommandesTest {
 
     private final CréerOffre créerOffre = mock(CréerOffre.class);
+    private final SouscrireOffre souscrireOffre = mock(SouscrireOffre.class);
     private final Sortie sortie = mock(Sortie.class);
 
     @Test
@@ -14,9 +15,22 @@ class InterpréteurCommandesTest {
         var créerOffreCommande = "offre mensuelle 30";
 
         // quand
-        new InterpréteurCommandes(sortie, créerOffre).exécuter(créerOffreCommande);
+        new InterpréteurCommandes(sortie, créerOffre, souscrireOffre).exécuter(créerOffreCommande);
 
         // on a
         verify(créerOffre).exécuter(TypeOffre.MENSUELLE, 30);
+    }
+
+    @Test
+    void prendEnCompteLaSouscriptionDUnePersonneAUneOffre() {
+        // avec
+        var souscrireOffreCommande = "souscrit Gilles mensuelle_30";
+        var souscrireOffre = mock(SouscrireOffre.class);
+
+        // quand
+        new InterpréteurCommandes(sortie, créerOffre, souscrireOffre).exécuter(souscrireOffreCommande);
+
+        // on a
+        verify(souscrireOffre).exécuter("Gilles", "mensuelle_30");
     }
 }

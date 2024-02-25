@@ -9,4 +9,9 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
     public void exécuter(TypeOffre type, Integer prixEnEuros) {
         offres.créer(type, prixEnEuros);
     }
+
+    @Override
+    public void exécuter(String gilles, String mensuelle30) {
+
+    }
 }
