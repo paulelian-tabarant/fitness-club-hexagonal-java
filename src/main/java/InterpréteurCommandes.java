@@ -17,8 +17,8 @@ public class InterpréteurCommandes {
         String commande = argumentÀ(offreCommande, 0);
 
         if (isCréerOffre(commande)) {
-            var prixParMois = argumentÀ(offreCommande, 2);
-            créerOffre.exécuter(TypeOffre.MENSUELLE, parseInt(prixParMois));
+            var créerOffreInterpréteur = new CréerOffreInterpréteur(créerOffre);
+            créerOffreInterpréteur.interpréter(offreCommande);
             return;
         }
 
