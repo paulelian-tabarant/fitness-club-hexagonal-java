@@ -1,5 +1,3 @@
-import static java.lang.Integer.parseInt;
-
 public class CommandesInput {
     private final CréerOffre créerOffre;
     private final SouscrireOffre souscrireOffre;
