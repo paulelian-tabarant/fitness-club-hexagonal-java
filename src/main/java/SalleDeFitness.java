@@ -1,8 +1,10 @@
 public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChiffreAffaires {
     private final Offres offres;
+    private final Souscriptions souscriptions;
 
     public SalleDeFitness(Offres offres, Souscriptions souscriptions) {
         this.offres = offres;
+        this.souscriptions = souscriptions;
     }
 
     @Override
@@ -11,7 +13,7 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
     }
 
     @Override
-    public void exécuter(String gilles, String mensuelle30) {
-        throw new UnsupportedOperationException("Not implemented yet");
+    public void exécuter(String nomPersonne, String identifiantOffre) {
+        souscriptions.ajouter(nomPersonne, identifiantOffre);
     }
 }
