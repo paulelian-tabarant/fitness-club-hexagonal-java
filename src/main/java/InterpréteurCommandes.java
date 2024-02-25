@@ -4,6 +4,7 @@ import static java.lang.Integer.parseInt;
 
 public class InterpréteurCommandes {
     public static final String CRÉER_OFFRE = "offre";
+    public static final String SOUSCRIRE_OFFRE = "souscrit";
     private final CréerOffre créerOffre;
     private final SouscrireOffre souscrireOffre;
 
@@ -13,21 +14,33 @@ public class InterpréteurCommandes {
     }
 
     public void exécuter(String offreCommande) {
-        String commande = offreCommande.split(" ")[0];
+        String commande = argumentÀ(offreCommande, 0);
 
-        if (Objects.equals(commande, CRÉER_OFFRE)) {
-            var prixParMois = offreCommande.split(" ")[2];
+        if (isCréerOffre(commande)) {
+            var prixParMois = argumentÀ(offreCommande, 2);
             créerOffre.exécuter(TypeOffre.MENSUELLE, parseInt(prixParMois));
             return;
         }
 
-        if (Objects.equals(commande, "souscrit")) {
-            var nom = offreCommande.split(" ")[1];
-            var identifiantOffre = offreCommande.split(" ")[2];
-            souscrireOffre.exécuter(nom, identifiantOffre);
+        if (isSouscrireOffre(commande)) {
+            var nomPersonne = argumentÀ(offreCommande, 1);
+            var identifiantOffre = argumentÀ(offreCommande, 2);
+            souscrireOffre.exécuter(nomPersonne, identifiantOffre);
             return;
         }
 
         throw new UnsupportedOperationException("not yet implemented");
+    }
+
+    private static boolean isSouscrireOffre(String commande) {
+        return Objects.equals(commande, SOUSCRIRE_OFFRE);
+    }
+
+    private static boolean isCréerOffre(String commande) {
+        return Objects.equals(commande, CRÉER_OFFRE);
+    }
+
+    private static String argumentÀ(String offreCommande, int index) {
+        return offreCommande.split(" ")[index];
     }
 }
