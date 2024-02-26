@@ -1,3 +1,8 @@
+package org.pauleliance.userside;
+
+import org.pauleliance.domain.CréerOffre;
+import org.pauleliance.domain.TypeOffre;
+
 import static java.lang.Integer.parseInt;
 
 public class CréerOffreInterpréteur implements Interpréteur {

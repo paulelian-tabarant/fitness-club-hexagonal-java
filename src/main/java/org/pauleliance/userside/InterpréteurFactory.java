@@ -1,3 +1,8 @@
+package org.pauleliance.userside;
+
+import org.pauleliance.domain.SouscrireOffre;
+import org.pauleliance.domain.CréerOffre;
+
 import java.util.Objects;
 
 public class InterpréteurFactory {

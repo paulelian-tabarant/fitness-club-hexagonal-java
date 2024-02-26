@@ -1,3 +1,9 @@
+package org.pauleliance.userside;
+
+import org.pauleliance.domain.Sortie;
+import org.pauleliance.domain.SouscrireOffre;
+import org.pauleliance.domain.CréerOffre;
+
 public class CommandesInput {
     private final CréerOffre créerOffre;
     private final SouscrireOffre souscrireOffre;

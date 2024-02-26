@@ -1,4 +1,9 @@
 import org.junit.jupiter.api.Test;
+import org.pauleliance.domain.SalleDeFitness;
+import org.pauleliance.serverside.OffresEnMémoire;
+import org.pauleliance.serverside.SouscriptionsEnMémoire;
+import org.pauleliance.userside.CommandesInput;
+import org.pauleliance.domain.Sortie;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

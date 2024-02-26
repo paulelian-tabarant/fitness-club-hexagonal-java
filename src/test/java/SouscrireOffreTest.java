@@ -1,4 +1,7 @@
 import org.junit.jupiter.api.Test;
+import org.pauleliance.domain.Offres;
+import org.pauleliance.domain.SalleDeFitness;
+import org.pauleliance.domain.Souscriptions;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

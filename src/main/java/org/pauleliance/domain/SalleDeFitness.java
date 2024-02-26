@@ -1,3 +1,5 @@
+package org.pauleliance.domain;
+
 public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChiffreAffaires {
     private final Offres offres;
     private final Souscriptions souscriptions;

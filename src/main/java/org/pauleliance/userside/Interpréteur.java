@@ -1,3 +1,5 @@
+package org.pauleliance.userside;
+
 public interface Interpréteur {
 
     void interpréter(String offreCommande);
