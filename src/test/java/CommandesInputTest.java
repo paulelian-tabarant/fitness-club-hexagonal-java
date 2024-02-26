@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
-import org.pauleliance.domain.CréerOffre;
-import org.pauleliance.domain.SouscrireOffre;
+import org.pauleliance.domain.ports.userside.CréerOffre;
+import org.pauleliance.domain.ports.userside.SouscrireOffre;
 import org.pauleliance.domain.TypeOffre;
 import org.pauleliance.userside.CommandesInput;
-import org.pauleliance.domain.Sortie;
+import org.pauleliance.domain.ports.userside.Sortie;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;

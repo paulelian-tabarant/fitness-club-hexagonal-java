@@ -1,6 +1,6 @@
 package org.pauleliance.userside;
 
-import org.pauleliance.domain.SouscrireOffre;
+import org.pauleliance.domain.ports.userside.SouscrireOffre;
 
 public class SouscrireOffreInterpréteur implements Interpréteur {
     private final SouscrireOffre souscrireOffre;

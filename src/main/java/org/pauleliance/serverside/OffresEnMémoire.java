@@ -1,7 +1,7 @@
 package org.pauleliance.serverside;
 
 import org.pauleliance.domain.TypeOffre;
-import org.pauleliance.domain.Offres;
+import org.pauleliance.domain.ports.serverside.Offres;
 
 public class OffresEnMémoire implements Offres {
     @Override

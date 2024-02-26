@@ -1,7 +1,7 @@
 package org.pauleliance.userside;
 
-import org.pauleliance.domain.SouscrireOffre;
-import org.pauleliance.domain.CréerOffre;
+import org.pauleliance.domain.ports.userside.SouscrireOffre;
+import org.pauleliance.domain.ports.userside.CréerOffre;
 
 import java.util.Objects;
 

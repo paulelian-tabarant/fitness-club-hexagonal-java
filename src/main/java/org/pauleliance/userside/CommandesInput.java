@@ -1,8 +1,8 @@
 package org.pauleliance.userside;
 
-import org.pauleliance.domain.Sortie;
-import org.pauleliance.domain.SouscrireOffre;
-import org.pauleliance.domain.CréerOffre;
+import org.pauleliance.domain.ports.userside.Sortie;
+import org.pauleliance.domain.ports.userside.SouscrireOffre;
+import org.pauleliance.domain.ports.userside.CréerOffre;
 
 public class CommandesInput {
     private final CréerOffre créerOffre;

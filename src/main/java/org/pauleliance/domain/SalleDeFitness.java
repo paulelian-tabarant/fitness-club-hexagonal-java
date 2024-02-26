@@ -1,5 +1,11 @@
 package org.pauleliance.domain;
 
+import org.pauleliance.domain.ports.serverside.Offres;
+import org.pauleliance.domain.ports.serverside.Souscriptions;
+import org.pauleliance.domain.ports.userside.ConsulterChiffreAffaires;
+import org.pauleliance.domain.ports.userside.CréerOffre;
+import org.pauleliance.domain.ports.userside.SouscrireOffre;
+
 public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChiffreAffaires {
     private final Offres offres;
     private final Souscriptions souscriptions;
