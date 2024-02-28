@@ -14,13 +14,15 @@ class CommandesInputTest {
     private final SouscrireOffre souscrireOffre = mock(SouscrireOffre.class);
     private final Sortie sortie = mock(Sortie.class);
 
+    private final CommandesInput commandesInput = new CommandesInput(sortie, créerOffre, souscrireOffre);
+
     @Test
     void créeUneOffre() {
         // avec
         var créerOffreCommande = "offre mensuelle 30";
 
         // quand
-        new CommandesInput(sortie, créerOffre, souscrireOffre).exécuter(créerOffreCommande);
+        commandesInput.exécuter(créerOffreCommande);
 
         // on a
         verify(créerOffre).exécuter(TypeOffre.MENSUELLE, 30);
@@ -32,7 +34,7 @@ class CommandesInputTest {
         var souscrireOffreCommande = "souscrit Gilles mensuelle_30";
 
         // quand
-        new CommandesInput(sortie, créerOffre, souscrireOffre).exécuter(souscrireOffreCommande);
+        commandesInput.exécuter(souscrireOffreCommande);
 
         // on a
         verify(souscrireOffre).exécuter("Gilles", "mensuelle_30");
