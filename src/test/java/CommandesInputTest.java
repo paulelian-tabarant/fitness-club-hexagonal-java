@@ -44,7 +44,6 @@ class CommandesInputTest {
     }
 
     @Test
-    @DisplayName("est en erreur si la commande n'est pas reconnue")
     void estEnErreurSiLaCommandeNEstPasReconnue() {
         // avec
         var commandeInconnue = "demande_une_pizza 4 fromages";
