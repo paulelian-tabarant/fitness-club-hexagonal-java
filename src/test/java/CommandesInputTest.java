@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.pauleliance.domain.ports.userside.CréerOffre;
 import org.pauleliance.domain.ports.userside.SouscrireOffre;
@@ -5,6 +7,7 @@ import org.pauleliance.domain.TypeOffre;
 import org.pauleliance.userside.CommandesInput;
 import org.pauleliance.domain.ports.userside.Sortie;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -38,5 +41,16 @@ class CommandesInputTest {
 
         // on a
         verify(souscrireOffre).exécuter("Gilles", "mensuelle_30");
+    }
+
+    @Test
+    @DisplayName("est en erreur si la commande n'est pas reconnue")
+    void estEnErreurSiLaCommandeNEstPasReconnue() {
+        // avec
+        var commandeInconnue = "demande_une_pizza 4 fromages";
+
+        // quand on a
+        assertThatThrownBy(() -> commandesInput.exécuter(commandeInconnue))
+                .isInstanceOf(UnsupportedOperationException.class);
     }
 }
