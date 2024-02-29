@@ -10,9 +10,9 @@ public class SouscrireOffreInterpréteur implements Interpréteur {
     }
 
     @Override
-    public void lancer(String offreCommande) {
-        var nomClient = Interpréteur.argumentÀ(offreCommande, 1);
-        var identifiantOffre = Interpréteur.argumentÀ(offreCommande, 2);
+    public void interpréter(String instruction) {
+        var nomClient = Interpréteur.argumentÀ(instruction, 1);
+        var identifiantOffre = Interpréteur.argumentÀ(instruction, 2);
 
         souscrireOffre.exécuter(nomClient, identifiantOffre);
     }

@@ -7,13 +7,13 @@ public class ConsulterChiffreAffairesInterpréteur implements Interpréteur {
     private final ConsulterChiffreAffaires consulterChiffreAffaires;
     private final Sortie sortie;
 
-    public ConsulterChiffreAffairesInterpréteur(ConsulterChiffreAffaires consulterCA, Sortie sortie) {
-        this.consulterChiffreAffaires = consulterCA;
+    public ConsulterChiffreAffairesInterpréteur(ConsulterChiffreAffaires consulterChiffreAffaires, Sortie sortie) {
+        this.consulterChiffreAffaires = consulterChiffreAffaires;
         this.sortie = sortie;
     }
 
     @Override
-    public void lancer(String commande) {
+    public void interpréter(String instruction) {
         var chiffreAffaires = consulterChiffreAffaires.exécuter();
         sortie.envoyer("Chiffre d'affaires du mois : " + chiffreAffaires + "€");
     }
