@@ -48,7 +48,6 @@ class CommandesInputTest {
     void afficheLeChiffreDAffaires() {
         // avec
         var chiffreDAffairesCommande = "ca";
-
         when(consulterChiffreAffaires.exécuter()).thenReturn(30);
 
         // quand
