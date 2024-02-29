@@ -23,7 +23,7 @@ class CommandesInputTest {
     @Test
     void créeUneOffre() {
         // avec
-        var créerOffreCommande = "offre mensuelle 30";
+        var créerOffreCommande = "offre typeOffre 30";
 
         // quand
         commandesInput.exécuter(créerOffreCommande);

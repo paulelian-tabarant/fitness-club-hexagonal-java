@@ -26,7 +26,20 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
     }
 
     @Override
-    public Object exécuter() {
-        throw new UnsupportedOperationException("not yet implemented");
+    public Integer exécuter() {
+        var offresEnCours = offres.disponibles();
+        var souscriptionsEnCours = souscriptions.enregistrées();
+
+        var chiffreAffaires = 0;
+        for (Souscription souscription : souscriptionsEnCours) {
+            var offrePourSouscription = offresEnCours
+                    .stream()
+                    .filter(offre -> offre.type().equals(souscription.typeOffre()))
+                    .findFirst();
+
+            chiffreAffaires += offrePourSouscription.map(Offre::prix).orElse(0);
+        }
+
+        return chiffreAffaires;
     }
 }
