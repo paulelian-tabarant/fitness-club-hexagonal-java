@@ -1,3 +1,5 @@
+package org.pauleliance.domain.ports.userside;
+
 import org.junit.jupiter.api.Test;
 import org.pauleliance.domain.ports.serverside.Offres;
 import org.pauleliance.domain.SalleDeFitness;

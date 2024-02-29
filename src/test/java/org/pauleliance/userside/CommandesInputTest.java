@@ -1,3 +1,5 @@
+package org.pauleliance.userside;
+
 import org.junit.jupiter.api.Test;
 import org.pauleliance.domain.ports.userside.ConsulterChiffreAffaires;
 import org.pauleliance.domain.ports.userside.CréerOffre;
