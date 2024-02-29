@@ -1,4 +1,4 @@
 package org.pauleliance.domain;
 
-public record Offre(String type, int prix) {
+public record Offre(String identifiant, Integer prix) {
 }

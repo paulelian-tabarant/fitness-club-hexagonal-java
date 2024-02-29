@@ -28,11 +28,11 @@ class ConsulterChiffreAffairesTest {
         var annuelle = new Offre("annuelle_debut_année", 30);
 
         List<Souscription> deuxMensuellesEtTroisAnnuelles = List.of(
-                new Souscription("Gilles", mensuelle.type()),
-                new Souscription("Paul", mensuelle.type()),
-                new Souscription("Léo", annuelle.type()),
-                new Souscription("Sarah", annuelle.type()),
-                new Souscription("Paul-Elian", annuelle.type())
+                new Souscription("Gilles", mensuelle.identifiant()),
+                new Souscription("Paul", mensuelle.identifiant()),
+                new Souscription("Léo", annuelle.identifiant()),
+                new Souscription("Sarah", annuelle.identifiant()),
+                new Souscription("Paul-Elian", annuelle.identifiant())
         );
 
         when(offres.disponibles()).thenReturn(List.of(mensuelle, annuelle));

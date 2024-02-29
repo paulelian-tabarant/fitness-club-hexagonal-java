@@ -21,8 +21,8 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
     }
 
     @Override
-    public void exécuter(String nomPersonne, String identifiantOffre) {
-        souscriptions.ajouter(nomPersonne, identifiantOffre);
+    public void exécuter(String nomClient, String identifiantOffre) {
+        souscriptions.ajouter(nomClient, identifiantOffre);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
         for (Souscription souscription : souscriptionsEnCours) {
             var offrePourSouscription = offresEnCours
                     .stream()
-                    .filter(offre -> offre.type().equals(souscription.typeOffre()))
+                    .filter(offre -> offre.identifiant().equals(souscription.identifiantOffre()))
                     .findFirst();
 
             chiffreAffaires += offrePourSouscription.map(Offre::prix).orElse(0);

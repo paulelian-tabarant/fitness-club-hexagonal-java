@@ -7,7 +7,7 @@ import java.util.List;
 
 public class OffresEnMémoire implements Offres {
     @Override
-    public void créer(int prixEnEuros) {
+    public void créer(Integer prixEnEuros) {
     }
 
     @Override

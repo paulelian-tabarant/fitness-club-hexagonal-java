@@ -1,5 +1,5 @@
 package org.pauleliance.domain.ports.userside;
 
 public interface SouscrireOffre {
-    void exécuter(String gilles, String mensuelle30);
+    void exécuter(String nomClient, String identifiantOffre);
 }

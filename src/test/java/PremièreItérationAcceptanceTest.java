@@ -18,7 +18,9 @@ public class PremièreItérationAcceptanceTest {
 
         var commandes = new CommandesInput(sortie, salle, salle, salle);
 
-        commandes.exécuter("offre typeOffre 30");
+        commandes.exécuter("offre 30");
+        // TODO: implémenter 'voir les offres disponibles'
+        // TODO: intercepter la valeur de l'identifiant de l'offre envoyé en sortie
         commandes.exécuter("souscrit Gilles mensuelle_30");
         commandes.exécuter("ca");
 

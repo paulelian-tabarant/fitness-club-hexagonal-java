@@ -13,7 +13,7 @@ public class CréerOffreInterpréteur implements Interpréteur {
     }
 
     @Override
-    public void interpréter(String offreCommande) {
+    public void lancer(String offreCommande) {
         var prixParMois = Interpréteur.argumentÀ(offreCommande, 1);
 
         créerOffre.exécuter(parseInt(prixParMois));
