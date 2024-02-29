@@ -27,17 +27,17 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
 
     @Override
     public Integer exécuter() {
-        var chiffreAffaires = 0;
+        return souscriptions.enregistrées()
+                .stream()
+                .reduce(0, (résultat, souscription) -> résultat + prixOffreLiéeÀ(souscription), Integer::sum);
+    }
 
-        for (Souscription souscription : souscriptions.enregistrées()) {
-            var offrePourSouscription = offres.disponibles()
-                    .stream()
-                    .filter(offre -> offre.identifiant().equals(souscription.identifiantOffre()))
-                    .findFirst();
+    private Integer prixOffreLiéeÀ(Souscription souscription) {
+        var offreLiéeÀSouscription = offres.disponibles()
+                .stream()
+                .filter(offre -> offre.identifiant().equals(souscription.identifiantOffre()))
+                .findFirst();
 
-            chiffreAffaires += offrePourSouscription.map(Offre::prix).orElse(0);
-        }
-
-        return chiffreAffaires;
+        return offreLiéeÀSouscription.map(Offre::prix).orElse(0);
     }
 }
