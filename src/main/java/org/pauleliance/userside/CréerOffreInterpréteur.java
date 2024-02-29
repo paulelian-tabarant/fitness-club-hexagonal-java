@@ -1,7 +1,6 @@
 package org.pauleliance.userside;
 
 import org.pauleliance.domain.ports.userside.CréerOffre;
-import org.pauleliance.domain.TypeOffre;
 
 import static java.lang.Integer.parseInt;
 
@@ -15,9 +14,9 @@ public class CréerOffreInterpréteur implements Interpréteur {
 
     @Override
     public void interpréter(String offreCommande) {
-        var prixParMois = Interpréteur.argumentÀ(offreCommande, 2);
+        var prixParMois = Interpréteur.argumentÀ(offreCommande, 1);
 
-        créerOffre.exécuter(TypeOffre.MENSUELLE, parseInt(prixParMois));
+        créerOffre.exécuter(parseInt(prixParMois));
     }
 
 }

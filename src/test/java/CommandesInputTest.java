@@ -1,10 +1,7 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.pauleliance.domain.ports.userside.ConsulterChiffreAffaires;
 import org.pauleliance.domain.ports.userside.CréerOffre;
 import org.pauleliance.domain.ports.userside.SouscrireOffre;
-import org.pauleliance.domain.TypeOffre;
 import org.pauleliance.userside.CommandesInput;
 import org.pauleliance.domain.ports.userside.Sortie;
 
@@ -23,25 +20,26 @@ class CommandesInputTest {
     @Test
     void créeUneOffre() {
         // avec
-        var créerOffreCommande = "offre typeOffre 30";
+        var créerOffreCommande = "offre 30";
 
         // quand
         commandesInput.exécuter(créerOffreCommande);
 
         // on a
-        verify(créerOffre).exécuter(TypeOffre.MENSUELLE, 30);
+        verify(créerOffre).exécuter(30);
     }
 
     @Test
     void prendEnCompteLaSouscriptionDUnePersonneAUneOffre() {
         // avec
-        var souscrireOffreCommande = "souscrit Gilles mensuelle_30";
+        String identifiantOffre = "3def4c-30";
+        var souscrireOffreCommande = "souscrit Gilles " + identifiantOffre;
 
         // quand
         commandesInput.exécuter(souscrireOffreCommande);
 
         // on a
-        verify(souscrireOffre).exécuter("Gilles", "mensuelle_30");
+        verify(souscrireOffre).exécuter("Gilles", identifiantOffre);
     }
 
     @Test
