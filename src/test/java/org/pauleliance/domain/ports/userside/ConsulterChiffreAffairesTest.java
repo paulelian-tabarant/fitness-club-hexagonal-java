@@ -24,8 +24,8 @@ class ConsulterChiffreAffairesTest {
     @Test
     @DisplayName("calcule le chiffre d'affaires en fonction des souscriptions")
     void calculeLeChiffreDAffairesEnFonctionDesSouscriptions() {
-        var mensuelle = new Offre("mensuelle", 40);
-        var annuelle = new Offre("annuelle", 30);
+        var mensuelle = new Offre("mensuelle_saint_valentin", 40);
+        var annuelle = new Offre("annuelle_debut_année", 30);
 
         List<Souscription> deuxMensuellesEtTroisAnnuelles = List.of(
                 new Souscription("Gilles", mensuelle.type()),
