@@ -22,6 +22,7 @@ public class PremièreItérationAcceptanceTest {
         // TODO: implémenter 'voir les offres disponibles'
         // TODO: intercepter la valeur de l'identifiant de l'offre envoyé en sortie
         commandes.exécuter("souscrit Gilles mensuelle_30");
+        // TODO: implémenter la partie server-side des souscriptions
         commandes.exécuter("ca");
 
         verify(sortie).envoyer("Chiffre d'affaires du mois : 30€");
