@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.pauleliance.domain.ports.userside.ConsulterChiffreAffaires;
 import org.pauleliance.domain.ports.userside.CréerOffre;
 import org.pauleliance.domain.ports.userside.SouscrireOffre;
 import org.pauleliance.domain.TypeOffre;
@@ -8,8 +9,7 @@ import org.pauleliance.userside.CommandesInput;
 import org.pauleliance.domain.ports.userside.Sortie;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 
 class CommandesInputTest {
 
@@ -17,7 +17,8 @@ class CommandesInputTest {
     private final SouscrireOffre souscrireOffre = mock(SouscrireOffre.class);
     private final Sortie sortie = mock(Sortie.class);
 
-    private final CommandesInput commandesInput = new CommandesInput(sortie, créerOffre, souscrireOffre);
+    private final ConsulterChiffreAffaires consulterChiffreAffaires = mock(ConsulterChiffreAffaires.class);
+    private final CommandesInput commandesInput = new CommandesInput(sortie, créerOffre, souscrireOffre, consulterChiffreAffaires);
 
     @Test
     void créeUneOffre() {
@@ -41,6 +42,20 @@ class CommandesInputTest {
 
         // on a
         verify(souscrireOffre).exécuter("Gilles", "mensuelle_30");
+    }
+
+    @Test
+    void afficheLeChiffreDAffaires() {
+        // avec
+        var chiffreDAffairesCommande = "ca";
+
+        when(consulterChiffreAffaires.exécuter()).thenReturn(30);
+
+        // quand
+        commandesInput.exécuter(chiffreDAffairesCommande);
+
+        // on a
+        verify(sortie).envoyer("Chiffre d'affaires du mois : 30€");
     }
 
     @Test

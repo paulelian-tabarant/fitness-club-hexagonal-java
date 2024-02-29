@@ -24,4 +24,9 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
     public void exécuter(String nomPersonne, String identifiantOffre) {
         souscriptions.ajouter(nomPersonne, identifiantOffre);
     }
+
+    @Override
+    public Object exécuter() {
+        throw new UnsupportedOperationException("not yet implemented");
+    }
 }
