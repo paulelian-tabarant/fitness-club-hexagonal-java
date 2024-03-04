@@ -1,5 +1,6 @@
 package org.pauleliance.userside;
 
+import org.pauleliance.domain.Offre;
 import org.pauleliance.domain.ports.ConsulterOffresDisponibles;
 import org.pauleliance.domain.ports.userside.Sortie;
 
@@ -17,10 +18,12 @@ public class ConsulterOffresDisponiblesInterpréteur implements Interpréteur {
 
     @Override
     public void interpréter(String instruction) {
-        List<String> offres = port.consulterOffresDisponibles();
+        List<Offre> offres = port.consulterOffresDisponibles();
 
         if (offres.isEmpty()) return;
 
-        sortie.envoyer(String.join(" ", offres));
+        var identifiantsOffres = offres.stream().map(Offre::identifiant).toList();
+
+        sortie.envoyer(String.join(" ", identifiantsOffres));
     }
 }

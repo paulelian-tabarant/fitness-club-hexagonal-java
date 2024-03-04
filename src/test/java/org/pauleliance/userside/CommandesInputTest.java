@@ -3,6 +3,7 @@ package org.pauleliance.userside;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.pauleliance.domain.Offre;
 import org.pauleliance.domain.ports.ConsulterOffresDisponibles;
 import org.pauleliance.domain.ports.userside.ConsulterChiffreAffaires;
 import org.pauleliance.domain.ports.userside.CréerOffre;
@@ -68,14 +69,14 @@ class CommandesInputTest {
     @Test
     @DisplayName("affiche les offres disponibles séparées d'un espace")
     void afficheLesOffresDisponiblesSéparéesDUnEspace() {
-        String offreAnnuelle = "annuelle_noel2024";
-        String offreMensuelle = "mensuelle_noel2024";
+        var annuelle = new Offre("annuelle_noel2024", 30);
+        var mensuelle = new Offre("mensuelle_noel2024", 40);
 
-        when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of(offreAnnuelle, offreMensuelle));
+        when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of(annuelle, mensuelle));
 
         commandesInput.exécuter("offres");
 
-        verify(sortie).envoyer(offreAnnuelle + " " + offreMensuelle);
+        verify(sortie).envoyer(annuelle.identifiant() + " " + mensuelle.identifiant());
     }
 
     @Test

@@ -45,7 +45,7 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
     }
 
     @Override
-    public List<String> consulterOffresDisponibles() {
-        throw new UnsupportedOperationException("not yet implemented");
+    public List<Offre> consulterOffresDisponibles() {
+        return offres.disponibles();
     }
 }
