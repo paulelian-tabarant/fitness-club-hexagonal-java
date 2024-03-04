@@ -3,19 +3,24 @@ package org.pauleliance.userside;
 import org.pauleliance.domain.ports.ConsulterOffresDisponibles;
 import org.pauleliance.domain.ports.userside.Sortie;
 
+import java.util.List;
+
 public class ConsulterOffresDisponiblesInterpréteur implements Interpréteur {
 
-    private final ConsulterOffresDisponibles consulterOffresDisponibles;
+    private final ConsulterOffresDisponibles port;
     private final Sortie sortie;
 
     ConsulterOffresDisponiblesInterpréteur(ConsulterOffresDisponibles consulterOffresDisponibles, Sortie sortie) {
-        this.consulterOffresDisponibles = consulterOffresDisponibles;
+        this.port = consulterOffresDisponibles;
         this.sortie = sortie;
     }
 
     @Override
     public void interpréter(String instruction) {
-        var offres = consulterOffresDisponibles.consulterOffresDisponibles();
+        List<String> offres = port.consulterOffresDisponibles();
+
+        if (offres.isEmpty()) return;
+
         sortie.envoyer(String.join(" ", offres));
     }
 }

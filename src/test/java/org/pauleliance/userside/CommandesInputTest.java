@@ -11,6 +11,7 @@ import org.pauleliance.domain.ports.userside.Sortie;
 
 import java.util.List;
 
+import static java.util.Collections.EMPTY_LIST;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
@@ -78,17 +79,13 @@ class CommandesInputTest {
     }
 
     @Test
-    @Disabled
     @DisplayName("N'envoie rien quand il n'y a pas d'offre")
     void nEnvoieRienQuandIlNYAPasDOffre() {
-        String offreAnnuelle = "annuelle_noel2024";
-        String offreMensuelle = "mensuelle_noel2024";
-
-        when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of(offreAnnuelle, offreMensuelle));
+        when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of());
 
         commandesInput.exécuter("offres");
 
-        verify(sortie).envoyer(offreAnnuelle + " " + offreMensuelle);
+        verify(sortie, never()).envoyer(anyString());
     }
 
     @Test
