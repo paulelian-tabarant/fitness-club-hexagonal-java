@@ -17,10 +17,10 @@ class CréerOffreTest {
         var souscriptions = mock(Souscriptions.class);
 
         // quand
-        new SalleDeFitness(offres, souscriptions).créerOffre(30);
+        new SalleDeFitness(offres, souscriptions).créerOffre("annuelle_noel2024", 30);
 
         // alors
-        verify(offres).créer("mensuelle_noel2024", 30);
+        verify(offres).créer("annuelle_noel2024", 30);
     }
 
 }

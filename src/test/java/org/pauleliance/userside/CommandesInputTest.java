@@ -31,13 +31,13 @@ class CommandesInputTest {
     @Test
     void créeUneOffre() {
         // avec
-        var créerOffreCommande = "offre 30";
+        var créerOffreCommande = "offre annuelle_noel2024 30";
 
         // quand
         commandesInput.exécuter(créerOffreCommande);
 
         // on a
-        verify(créerOffre).créerOffre(30);
+        verify(créerOffre).créerOffre("annuelle_noel2024", 30);
     }
 
     @Test

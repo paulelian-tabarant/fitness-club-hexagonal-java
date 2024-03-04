@@ -19,8 +19,8 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
     }
 
     @Override
-    public void créerOffre(Integer prixEnEuros) {
-        offres.créer("mensuelle_noel2024", prixEnEuros);
+    public void créerOffre(String code, Integer prixEnEuros) {
+        offres.créer(code, prixEnEuros);
     }
 
     @Override

@@ -2,7 +2,7 @@ package org.pauleliance;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
+import org.mockito.ArgumentMatcher;
 import org.pauleliance.domain.SalleDeFitness;
 import org.pauleliance.domain.ports.userside.Sortie;
 import org.pauleliance.serverside.OffresEnMémoire;
@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify;
 
 public class PremièreItérationAcceptanceTest {
 
-    ArgumentCaptor<String> offresCaptor;
+    ArgumentCaptor<String> offresCaptor = ArgumentCaptor.captor();
 
     @Test
     // TODO: interagir directement avec l'entrée standard
@@ -25,15 +25,12 @@ public class PremièreItérationAcceptanceTest {
 
         var commandes = new CommandesInput(sortie, salle, salle, salle, salle);
 
-        commandes.exécuter("offre 30");
+        commandes.exécuter("offre annuelle_noel2024 30");
         commandes.exécuter("offres");
 
-        verify(sortie).envoyer(offresCaptor.capture());
-        assertThat(offresCaptor.getValue().split(" ")).hasSize(1);
+        verify(sortie).envoyer("annuelle_noel2024");
 
-        var premièreOffre = offresCaptor.getValue();
-
-        commandes.exécuter("souscrit Gilles " + premièreOffre);
+        commandes.exécuter("souscrit Gilles annuelle_noel2024");
         // TODO: implémenter la partie server-side des souscriptions
         commandes.exécuter("ca");
 

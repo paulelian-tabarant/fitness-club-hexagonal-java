@@ -14,9 +14,10 @@ public class CréerOffreInterpréteur implements Interpréteur {
 
     @Override
     public void interpréter(String instruction) {
-        var prixParMois = Interpréteur.argumentÀ(instruction, 1);
+        var code = Interpréteur.argumentÀ(instruction, 1);
+        var prixParMois = Interpréteur.argumentÀ(instruction, 2);
 
-        créerOffre.créerOffre(parseInt(prixParMois));
+        créerOffre.créerOffre(code, parseInt(prixParMois));
     }
 
 }
