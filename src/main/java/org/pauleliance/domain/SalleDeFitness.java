@@ -38,7 +38,7 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
     private Integer prixOffreLiéeÀ(Souscription souscription) {
         var offreLiéeÀSouscription = offres.disponibles()
                 .stream()
-                .filter(offre -> offre.identifiant().equals(souscription.identifiantOffre()))
+                .filter(offre -> offre.code().equals(souscription.identifiantOffre()))
                 .findFirst();
 
         return offreLiéeÀSouscription.map(Offre::prix).orElse(0);

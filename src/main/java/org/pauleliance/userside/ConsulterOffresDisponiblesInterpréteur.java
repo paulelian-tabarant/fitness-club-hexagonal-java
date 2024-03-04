@@ -22,7 +22,7 @@ public class ConsulterOffresDisponiblesInterpréteur implements Interpréteur {
 
         if (offres.isEmpty()) return;
 
-        var identifiantsOffres = offres.stream().map(Offre::identifiant).toList();
+        var identifiantsOffres = offres.stream().map(Offre::code).toList();
 
         sortie.envoyer(String.join(" ", identifiantsOffres));
     }

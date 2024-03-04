@@ -1,6 +1,5 @@
 package org.pauleliance.userside;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.pauleliance.domain.Offre;
@@ -12,7 +11,6 @@ import org.pauleliance.domain.ports.userside.Sortie;
 
 import java.util.List;
 
-import static java.util.Collections.EMPTY_LIST;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
@@ -76,7 +74,7 @@ class CommandesInputTest {
 
         commandesInput.exécuter("offres");
 
-        verify(sortie).envoyer(annuelle.identifiant() + " " + mensuelle.identifiant());
+        verify(sortie).envoyer(annuelle.code() + " " + mensuelle.code());
     }
 
     @Test

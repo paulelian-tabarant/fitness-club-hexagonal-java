@@ -27,9 +27,7 @@ public class PremièreItérationAcceptanceTest {
 
         commandes.exécuter("offre annuelle_noel2024 30");
         commandes.exécuter("offres");
-
         verify(sortie).envoyer("annuelle_noel2024");
-
         commandes.exécuter("souscrit Gilles annuelle_noel2024");
         // TODO: implémenter la partie server-side des souscriptions
         commandes.exécuter("ca");
