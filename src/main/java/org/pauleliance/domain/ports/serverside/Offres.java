@@ -5,7 +5,7 @@ import org.pauleliance.domain.Offre;
 import java.util.List;
 
 public interface Offres {
-    void créer(Integer prixEnEuros);
+    void créer(String code, Integer prixEnEuros);
 
     List<Offre> disponibles();
 }

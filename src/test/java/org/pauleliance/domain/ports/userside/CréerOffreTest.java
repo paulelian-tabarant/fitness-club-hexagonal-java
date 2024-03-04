@@ -20,7 +20,7 @@ class CréerOffreTest {
         new SalleDeFitness(offres, souscriptions).créerOffre(30);
 
         // alors
-        verify(offres).créer(30);
+        verify(offres).créer("mensuelle_noel2024", 30);
     }
 
 }
