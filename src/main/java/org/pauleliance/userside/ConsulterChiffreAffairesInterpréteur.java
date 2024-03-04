@@ -14,7 +14,7 @@ public class ConsulterChiffreAffairesInterpréteur implements Interpréteur {
 
     @Override
     public void interpréter(String instruction) {
-        var chiffreAffaires = consulterChiffreAffaires.exécuter();
+        var chiffreAffaires = consulterChiffreAffaires.consulterChiffreDAffaires();
         sortie.envoyer("Chiffre d'affaires du mois : " + chiffreAffaires + "€");
     }
 }

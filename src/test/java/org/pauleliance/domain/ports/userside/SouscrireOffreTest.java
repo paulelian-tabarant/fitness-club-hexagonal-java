@@ -18,7 +18,7 @@ class SouscrireOffreTest {
         var souscriptions = mock(Souscriptions.class);
 
         // quand
-        new SalleDeFitness(mock(Offres.class), souscriptions).exécuter(nomPersonne, identifiantOffre);
+        new SalleDeFitness(mock(Offres.class), souscriptions).souscrireOffre(nomPersonne, identifiantOffre);
 
         // alors
         verify(souscriptions).ajouter(nomPersonne, identifiantOffre);

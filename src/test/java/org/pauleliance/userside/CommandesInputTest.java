@@ -1,23 +1,30 @@
 package org.pauleliance.userside;
 
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.pauleliance.domain.ports.ConsulterOffresDisponibles;
 import org.pauleliance.domain.ports.userside.ConsulterChiffreAffaires;
 import org.pauleliance.domain.ports.userside.CréerOffre;
 import org.pauleliance.domain.ports.userside.SouscrireOffre;
-import org.pauleliance.userside.CommandesInput;
 import org.pauleliance.domain.ports.userside.Sortie;
 
+import java.util.List;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 class CommandesInputTest {
 
     private final CréerOffre créerOffre = mock(CréerOffre.class);
     private final SouscrireOffre souscrireOffre = mock(SouscrireOffre.class);
-    private final Sortie sortie = mock(Sortie.class);
 
     private final ConsulterChiffreAffaires consulterChiffreAffaires = mock(ConsulterChiffreAffaires.class);
-    private final CommandesInput commandesInput = new CommandesInput(sortie, créerOffre, souscrireOffre, consulterChiffreAffaires);
+    private final ConsulterOffresDisponibles consulterOffresDisponibles = mock(ConsulterOffresDisponibles.class);
+
+    private final Sortie sortie = mock(Sortie.class);
+    private final CommandesInput commandesInput = new CommandesInput(sortie, créerOffre, souscrireOffre, consulterChiffreAffaires, consulterOffresDisponibles);
 
     @Test
     void créeUneOffre() {
@@ -28,7 +35,7 @@ class CommandesInputTest {
         commandesInput.exécuter(créerOffreCommande);
 
         // on a
-        verify(créerOffre).exécuter(30);
+        verify(créerOffre).créerOffre(30);
     }
 
     @Test
@@ -41,20 +48,47 @@ class CommandesInputTest {
         commandesInput.exécuter(souscrireOffreCommande);
 
         // on a
-        verify(souscrireOffre).exécuter("Gilles", identifiantOffre);
+        verify(souscrireOffre).souscrireOffre("Gilles", identifiantOffre);
     }
 
     @Test
     void afficheLeChiffreDAffaires() {
         // avec
         var chiffreDAffairesCommande = "ca";
-        when(consulterChiffreAffaires.exécuter()).thenReturn(30);
+        when(consulterChiffreAffaires.consulterChiffreDAffaires()).thenReturn(30);
 
         // quand
         commandesInput.exécuter(chiffreDAffairesCommande);
 
         // on a
         verify(sortie).envoyer("Chiffre d'affaires du mois : 30€");
+    }
+
+    @Test
+    @DisplayName("affiche les offres disponibles séparées d'un espace")
+    void afficheLesOffresDisponiblesSéparéesDUnEspace() {
+        String offreAnnuelle = "annuelle_noel2024";
+        String offreMensuelle = "mensuelle_noel2024";
+
+        when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of(offreAnnuelle, offreMensuelle));
+
+        commandesInput.exécuter("offres");
+
+        verify(sortie).envoyer(offreAnnuelle + " " + offreMensuelle);
+    }
+
+    @Test
+    @Disabled
+    @DisplayName("N'envoie rien quand il n'y a pas d'offre")
+    void nEnvoieRienQuandIlNYAPasDOffre() {
+        String offreAnnuelle = "annuelle_noel2024";
+        String offreMensuelle = "mensuelle_noel2024";
+
+        when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of(offreAnnuelle, offreMensuelle));
+
+        commandesInput.exécuter("offres");
+
+        verify(sortie).envoyer(offreAnnuelle + " " + offreMensuelle);
     }
 
     @Test

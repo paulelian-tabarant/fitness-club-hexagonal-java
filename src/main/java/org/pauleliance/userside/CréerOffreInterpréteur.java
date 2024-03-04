@@ -16,7 +16,7 @@ public class CréerOffreInterpréteur implements Interpréteur {
     public void interpréter(String instruction) {
         var prixParMois = Interpréteur.argumentÀ(instruction, 1);
 
-        créerOffre.exécuter(parseInt(prixParMois));
+        créerOffre.créerOffre(parseInt(prixParMois));
     }
 
 }

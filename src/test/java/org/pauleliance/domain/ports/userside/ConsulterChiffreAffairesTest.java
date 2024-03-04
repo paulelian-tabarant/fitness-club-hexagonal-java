@@ -38,7 +38,7 @@ class ConsulterChiffreAffairesTest {
         when(offres.disponibles()).thenReturn(List.of(mensuelle, annuelle));
         when(souscriptions.enregistrées()).thenReturn(deuxMensuellesEtTroisAnnuelles);
 
-        assertThat(consulterChiffreAffaires.exécuter()).isEqualTo(2 * mensuelle.prix() + 3 * annuelle.prix());
+        assertThat(consulterChiffreAffaires.consulterChiffreDAffaires()).isEqualTo(2 * mensuelle.prix() + 3 * annuelle.prix());
     }
 
 }

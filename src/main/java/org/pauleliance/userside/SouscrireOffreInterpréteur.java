@@ -14,6 +14,6 @@ public class SouscrireOffreInterpréteur implements Interpréteur {
         var nomClient = Interpréteur.argumentÀ(instruction, 1);
         var identifiantOffre = Interpréteur.argumentÀ(instruction, 2);
 
-        souscrireOffre.exécuter(nomClient, identifiantOffre);
+        souscrireOffre.souscrireOffre(nomClient, identifiantOffre);
     }
 }

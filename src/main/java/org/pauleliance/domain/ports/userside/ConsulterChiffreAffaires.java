@@ -1,5 +1,5 @@
 package org.pauleliance.domain.ports.userside;
 
 public interface ConsulterChiffreAffaires {
-    Integer exécuter();
+    Integer consulterChiffreDAffaires();
 }

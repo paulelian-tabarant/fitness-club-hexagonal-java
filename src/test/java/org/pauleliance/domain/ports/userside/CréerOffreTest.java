@@ -17,7 +17,7 @@ class CréerOffreTest {
         var souscriptions = mock(Souscriptions.class);
 
         // quand
-        new SalleDeFitness(offres, souscriptions).exécuter(30);
+        new SalleDeFitness(offres, souscriptions).créerOffre(30);
 
         // alors
         verify(offres).créer(30);
