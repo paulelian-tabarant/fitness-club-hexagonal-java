@@ -1,12 +1,12 @@
 package org.pauleliance.userside;
 
 import org.pauleliance.domain.ports.ConsulterOffresDisponibles;
-import org.pauleliance.domain.ports.userside.ConsulterChiffreAffaires;
+import org.pauleliance.domain.ports.userside.PourConsulterChiffreAffaires;
 import org.pauleliance.domain.ports.userside.CréerOffre;
 import org.pauleliance.domain.ports.userside.Sortie;
 import org.pauleliance.domain.ports.userside.SouscrireOffre;
 
-public class InterpréteurFactory {
+public class CommandeTextuelleFactory {
     public static final String CRÉER_OFFRE = "offre";
     public static final String SOUSCRIRE_OFFRE = "souscrit";
     public static final String CONSULTER_CHIFFRE_D_AFFAIRES = "ca";
@@ -14,39 +14,39 @@ public class InterpréteurFactory {
 
     private final CréerOffre créerOffre;
     private final SouscrireOffre souscrireOffre;
-    private final ConsulterChiffreAffaires consulterChiffreAffaires;
+    private final PourConsulterChiffreAffaires pourConsulterChiffreAffaires;
     private final ConsulterOffresDisponibles consulterOffres;
 
     private final Sortie sortie;
 
-    public InterpréteurFactory(CréerOffre créerOffre,
-                               SouscrireOffre souscrireOffre,
-                               ConsulterChiffreAffaires consulterChiffreAffaires,
-                               ConsulterOffresDisponibles consulterOffres,
-                               Sortie sortie) {
+    public CommandeTextuelleFactory(CréerOffre créerOffre,
+                                    SouscrireOffre souscrireOffre,
+                                    PourConsulterChiffreAffaires pourConsulterChiffreAffaires,
+                                    ConsulterOffresDisponibles consulterOffres,
+                                    Sortie sortie) {
 
         this.créerOffre = créerOffre;
         this.souscrireOffre = souscrireOffre;
-        this.consulterChiffreAffaires = consulterChiffreAffaires;
+        this.pourConsulterChiffreAffaires = pourConsulterChiffreAffaires;
         this.consulterOffres = consulterOffres;
         this.sortie = sortie;
     }
 
-    public Interpréteur pour(String commande) {
+    public CommandeTextuelle pour(String commande) {
         if (commande.equals(CRÉER_OFFRE)) {
-            return new CréerOffreInterpréteur(créerOffre);
+            return new CréerOffreCommandeTextuelle(créerOffre);
         }
 
         if (commande.equals(CONSULTER_OFFRES_DISPONIBLES)) {
-            return new ConsulterOffresDisponiblesInterpréteur(consulterOffres, sortie);
+            return new ConsulterOffresDisponiblesCommandeTextuelle(consulterOffres, sortie);
         }
 
         if (commande.equals(SOUSCRIRE_OFFRE)) {
-            return new SouscrireOffreInterpréteur(souscrireOffre);
+            return new SouscrireOffreCommandeTextuelle(souscrireOffre);
         }
 
         if (commande.equals(CONSULTER_CHIFFRE_D_AFFAIRES)) {
-            return new ConsulterChiffreAffairesInterpréteur(consulterChiffreAffaires, sortie);
+            return new ConsulterChiffreAffairesCommandeTextuelle(pourConsulterChiffreAffaires, sortie);
         }
 
         throw new UnsupportedOperationException("not yet implemented");

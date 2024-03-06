@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.pauleliance.domain.Offre;
 import org.pauleliance.domain.ports.ConsulterOffresDisponibles;
-import org.pauleliance.domain.ports.userside.ConsulterChiffreAffaires;
+import org.pauleliance.domain.ports.userside.PourConsulterChiffreAffaires;
 import org.pauleliance.domain.ports.userside.CréerOffre;
 import org.pauleliance.domain.ports.userside.SouscrireOffre;
 import org.pauleliance.domain.ports.userside.Sortie;
@@ -15,16 +15,16 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
-class CommandesInputTest {
+class EntréeTextuelleTest {
 
     private final CréerOffre créerOffre = mock(CréerOffre.class);
     private final SouscrireOffre souscrireOffre = mock(SouscrireOffre.class);
 
-    private final ConsulterChiffreAffaires consulterChiffreAffaires = mock(ConsulterChiffreAffaires.class);
+    private final PourConsulterChiffreAffaires pourConsulterChiffreAffaires = mock(PourConsulterChiffreAffaires.class);
     private final ConsulterOffresDisponibles consulterOffresDisponibles = mock(ConsulterOffresDisponibles.class);
 
     private final Sortie sortie = mock(Sortie.class);
-    private final CommandesInput commandesInput = new CommandesInput(sortie, créerOffre, souscrireOffre, consulterChiffreAffaires, consulterOffresDisponibles);
+    private final EntréeTextuelle entréeTextuelle = new EntréeTextuelle(sortie, créerOffre, souscrireOffre, pourConsulterChiffreAffaires, consulterOffresDisponibles);
 
     @Test
     void créeUneOffre() {
@@ -32,7 +32,7 @@ class CommandesInputTest {
         var créerOffreCommande = "offre annuelle_noel2024 30";
 
         // quand
-        commandesInput.exécuter(créerOffreCommande);
+        entréeTextuelle.exécuter(créerOffreCommande);
 
         // on a
         verify(créerOffre).créerOffre("annuelle_noel2024", 30);
@@ -45,7 +45,7 @@ class CommandesInputTest {
         var souscrireOffreCommande = "souscrit Gilles " + identifiantOffre;
 
         // quand
-        commandesInput.exécuter(souscrireOffreCommande);
+        entréeTextuelle.exécuter(souscrireOffreCommande);
 
         // on a
         verify(souscrireOffre).souscrireOffre("Gilles", identifiantOffre);
@@ -55,10 +55,10 @@ class CommandesInputTest {
     void afficheLeChiffreDAffaires() {
         // avec
         var chiffreDAffairesCommande = "ca";
-        when(consulterChiffreAffaires.consulterChiffreDAffaires()).thenReturn(30);
+        when(pourConsulterChiffreAffaires.consulterChiffreAffaires()).thenReturn(30);
 
         // quand
-        commandesInput.exécuter(chiffreDAffairesCommande);
+        entréeTextuelle.exécuter(chiffreDAffairesCommande);
 
         // on a
         verify(sortie).envoyer("Chiffre d'affaires du mois : 30€");
@@ -72,7 +72,7 @@ class CommandesInputTest {
 
         when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of(annuelle, mensuelle));
 
-        commandesInput.exécuter("offres");
+        entréeTextuelle.exécuter("offres");
 
         verify(sortie).envoyer(annuelle.code() + " " + mensuelle.code());
     }
@@ -82,7 +82,7 @@ class CommandesInputTest {
     void nEnvoieRienQuandIlNYAPasDOffre() {
         when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of());
 
-        commandesInput.exécuter("offres");
+        entréeTextuelle.exécuter("offres");
 
         verify(sortie, never()).envoyer(anyString());
     }
@@ -93,7 +93,7 @@ class CommandesInputTest {
         var commandeInconnue = "demande_une_pizza 4 fromages";
 
         // quand on a
-        assertThatThrownBy(() -> commandesInput.exécuter(commandeInconnue))
+        assertThatThrownBy(() -> entréeTextuelle.exécuter(commandeInconnue))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 }

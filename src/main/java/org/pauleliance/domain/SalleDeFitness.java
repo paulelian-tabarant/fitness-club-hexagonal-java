@@ -3,13 +3,13 @@ package org.pauleliance.domain;
 import org.pauleliance.domain.ports.ConsulterOffresDisponibles;
 import org.pauleliance.domain.ports.serverside.Offres;
 import org.pauleliance.domain.ports.serverside.Souscriptions;
-import org.pauleliance.domain.ports.userside.ConsulterChiffreAffaires;
+import org.pauleliance.domain.ports.userside.PourConsulterChiffreAffaires;
 import org.pauleliance.domain.ports.userside.CréerOffre;
 import org.pauleliance.domain.ports.userside.SouscrireOffre;
 
 import java.util.List;
 
-public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChiffreAffaires, ConsulterOffresDisponibles {
+public class SalleDeFitness implements CréerOffre, SouscrireOffre, PourConsulterChiffreAffaires, ConsulterOffresDisponibles {
     private final Offres offres;
     private final Souscriptions souscriptions;
 
@@ -29,7 +29,7 @@ public class SalleDeFitness implements CréerOffre, SouscrireOffre, ConsulterChi
     }
 
     @Override
-    public Integer consulterChiffreDAffaires() {
+    public Integer consulterChiffreAffaires() {
         return souscriptions.enregistrées()
                 .stream()
                 .reduce(0, (résultat, souscription) -> résultat + prixOffreLiéeÀ(souscription), Integer::sum);

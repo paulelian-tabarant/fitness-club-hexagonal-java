@@ -1,8 +1,8 @@
 package org.pauleliance.userside;
 
-public interface Interpréteur {
+public interface CommandeTextuelle {
 
-    void interpréter(String instruction);
+    void exécuter(String instruction);
 
     static String argumentÀ(String instruction, int position) {
         return instruction.split(" ")[position];

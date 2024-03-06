@@ -6,18 +6,18 @@ import org.pauleliance.domain.ports.userside.Sortie;
 
 import java.util.List;
 
-public class ConsulterOffresDisponiblesInterpréteur implements Interpréteur {
+public class ConsulterOffresDisponiblesCommandeTextuelle implements CommandeTextuelle {
 
     private final ConsulterOffresDisponibles port;
     private final Sortie sortie;
 
-    ConsulterOffresDisponiblesInterpréteur(ConsulterOffresDisponibles consulterOffresDisponibles, Sortie sortie) {
+    ConsulterOffresDisponiblesCommandeTextuelle(ConsulterOffresDisponibles consulterOffresDisponibles, Sortie sortie) {
         this.port = consulterOffresDisponibles;
         this.sortie = sortie;
     }
 
     @Override
-    public void interpréter(String instruction) {
+    public void exécuter(String instruction) {
         List<Offre> offres = port.consulterOffresDisponibles();
 
         if (offres.isEmpty()) return;

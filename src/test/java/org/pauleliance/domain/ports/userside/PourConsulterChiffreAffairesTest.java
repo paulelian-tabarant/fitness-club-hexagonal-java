@@ -14,12 +14,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class ConsulterChiffreAffairesTest {
+class PourConsulterChiffreAffairesTest {
 
 
     private final Offres offres = mock(Offres.class);
     private final Souscriptions souscriptions = mock(Souscriptions.class);
-    private final ConsulterChiffreAffaires consulterChiffreAffaires = new SalleDeFitness(offres, souscriptions);
+    private final PourConsulterChiffreAffaires pourConsulterChiffreAffaires = new SalleDeFitness(offres, souscriptions);
 
     @Test
     @DisplayName("calcule le chiffre d'affaires en fonction des souscriptions")
@@ -38,7 +38,7 @@ class ConsulterChiffreAffairesTest {
         when(offres.disponibles()).thenReturn(List.of(mensuelle, annuelle));
         when(souscriptions.enregistrées()).thenReturn(deuxMensuellesEtTroisAnnuelles);
 
-        assertThat(consulterChiffreAffaires.consulterChiffreDAffaires()).isEqualTo(2 * mensuelle.prix() + 3 * annuelle.prix());
+        assertThat(pourConsulterChiffreAffaires.consulterChiffreAffaires()).isEqualTo(2 * mensuelle.prix() + 3 * annuelle.prix());
     }
 
 }
