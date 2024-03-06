@@ -3,10 +3,10 @@ package org.pauleliance.userside;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.pauleliance.domain.Offre;
-import org.pauleliance.domain.ports.ConsulterOffresDisponibles;
-import org.pauleliance.domain.ports.userside.PourConsulterChiffreAffaires;
-import org.pauleliance.domain.ports.userside.CréerOffre;
-import org.pauleliance.domain.ports.userside.SouscrireOffre;
+import org.pauleliance.domain.ports.userside.PourConsulterLesOffresDisponibles;
+import org.pauleliance.domain.ports.userside.PourConsulterLeChiffreDAffaires;
+import org.pauleliance.domain.ports.userside.PourCréerUneOffre;
+import org.pauleliance.domain.ports.userside.PourSouscrireÀUneOffre;
 import org.pauleliance.domain.ports.userside.Sortie;
 
 import java.util.List;
@@ -17,14 +17,14 @@ import static org.mockito.Mockito.*;
 
 class EntréeTextuelleTest {
 
-    private final CréerOffre créerOffre = mock(CréerOffre.class);
-    private final SouscrireOffre souscrireOffre = mock(SouscrireOffre.class);
+    private final PourCréerUneOffre pourCréerUneOffre = mock(PourCréerUneOffre.class);
+    private final PourSouscrireÀUneOffre pourSouscrireÀUneOffre = mock(PourSouscrireÀUneOffre.class);
 
-    private final PourConsulterChiffreAffaires pourConsulterChiffreAffaires = mock(PourConsulterChiffreAffaires.class);
-    private final ConsulterOffresDisponibles consulterOffresDisponibles = mock(ConsulterOffresDisponibles.class);
+    private final PourConsulterLeChiffreDAffaires pourConsulterLeChiffreDAffaires = mock(PourConsulterLeChiffreDAffaires.class);
+    private final PourConsulterLesOffresDisponibles pourConsulterLesOffresDisponibles = mock(PourConsulterLesOffresDisponibles.class);
 
     private final Sortie sortie = mock(Sortie.class);
-    private final EntréeTextuelle entréeTextuelle = new EntréeTextuelle(sortie, créerOffre, souscrireOffre, pourConsulterChiffreAffaires, consulterOffresDisponibles);
+    private final EntréeTextuelle entréeTextuelle = new EntréeTextuelle(sortie, pourCréerUneOffre, pourSouscrireÀUneOffre, pourConsulterLeChiffreDAffaires, pourConsulterLesOffresDisponibles);
 
     @Test
     void créeUneOffre() {
@@ -35,7 +35,7 @@ class EntréeTextuelleTest {
         entréeTextuelle.exécuter(créerOffreCommande);
 
         // on a
-        verify(créerOffre).créerOffre("annuelle_noel2024", 30);
+        verify(pourCréerUneOffre).créerUneOffre("annuelle_noel2024", 30);
     }
 
     @Test
@@ -48,14 +48,14 @@ class EntréeTextuelleTest {
         entréeTextuelle.exécuter(souscrireOffreCommande);
 
         // on a
-        verify(souscrireOffre).souscrireOffre("Gilles", identifiantOffre);
+        verify(pourSouscrireÀUneOffre).souscrireÀUneOffre("Gilles", identifiantOffre);
     }
 
     @Test
     void afficheLeChiffreDAffaires() {
         // avec
         var chiffreDAffairesCommande = "ca";
-        when(pourConsulterChiffreAffaires.consulterChiffreAffaires()).thenReturn(30);
+        when(pourConsulterLeChiffreDAffaires.consulterLeChiffreDAffaires()).thenReturn(30);
 
         // quand
         entréeTextuelle.exécuter(chiffreDAffairesCommande);
@@ -70,7 +70,7 @@ class EntréeTextuelleTest {
         var annuelle = new Offre("annuelle_noel2024", 30);
         var mensuelle = new Offre("mensuelle_noel2024", 40);
 
-        when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of(annuelle, mensuelle));
+        when(pourConsulterLesOffresDisponibles.consulterLesOffresDisponibles()).thenReturn(List.of(annuelle, mensuelle));
 
         entréeTextuelle.exécuter("offres");
 
@@ -80,7 +80,7 @@ class EntréeTextuelleTest {
     @Test
     @DisplayName("N'envoie rien quand il n'y a pas d'offre")
     void nEnvoieRienQuandIlNYAPasDOffre() {
-        when(consulterOffresDisponibles.consulterOffresDisponibles()).thenReturn(List.of());
+        when(pourConsulterLesOffresDisponibles.consulterLesOffresDisponibles()).thenReturn(List.of());
 
         entréeTextuelle.exécuter("offres");
 

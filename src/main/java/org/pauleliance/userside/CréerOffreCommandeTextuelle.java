@@ -1,15 +1,15 @@
 package org.pauleliance.userside;
 
-import org.pauleliance.domain.ports.userside.CréerOffre;
+import org.pauleliance.domain.ports.userside.PourCréerUneOffre;
 
 import static java.lang.Integer.parseInt;
 
 public class CréerOffreCommandeTextuelle implements CommandeTextuelle {
 
-    private final CréerOffre créerOffre;
+    private final PourCréerUneOffre port;
 
-    public CréerOffreCommandeTextuelle(CréerOffre créerOffre) {
-        this.créerOffre = créerOffre;
+    public CréerOffreCommandeTextuelle(PourCréerUneOffre port) {
+        this.port = port;
     }
 
     @Override
@@ -17,7 +17,7 @@ public class CréerOffreCommandeTextuelle implements CommandeTextuelle {
         var code = CommandeTextuelle.argumentÀ(instruction, 1);
         var prixParMois = CommandeTextuelle.argumentÀ(instruction, 2);
 
-        créerOffre.créerOffre(code, parseInt(prixParMois));
+        port.créerUneOffre(code, parseInt(prixParMois));
     }
 
 }

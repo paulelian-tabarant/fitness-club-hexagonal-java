@@ -8,7 +8,7 @@ import org.pauleliance.domain.ports.serverside.Souscriptions;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-class SouscrireOffreTest {
+class PourSouscrireÀUneOffreTest {
 
     @Test
     void prendEnCompteLaSouscriptionDUnePersonneAUneOffre() {
@@ -18,7 +18,7 @@ class SouscrireOffreTest {
         var souscriptions = mock(Souscriptions.class);
 
         // quand
-        new SalleDeFitness(mock(Offres.class), souscriptions).souscrireOffre(nomPersonne, identifiantOffre);
+        new SalleDeFitness(mock(Offres.class), souscriptions).souscrireÀUneOffre(nomPersonne, identifiantOffre);
 
         // alors
         verify(souscriptions).ajouter(nomPersonne, identifiantOffre);

@@ -6,6 +6,7 @@ import org.pauleliance.domain.Offre;
 import org.pauleliance.domain.SalleDeFitness;
 import org.pauleliance.domain.ports.serverside.Offres;
 import org.pauleliance.domain.ports.serverside.Souscriptions;
+import org.pauleliance.domain.ports.userside.PourConsulterLesOffresDisponibles;
 
 import java.util.List;
 
@@ -13,11 +14,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class ConsulterOffresDisponiblesTest {
+class PourConsulterLesOffresDisponiblesTest {
 
     private final Offres offres = mock(Offres.class);
 
-    private final ConsulterOffresDisponibles consulterOffresDisponibles =
+    private final PourConsulterLesOffresDisponibles pourConsulterLesOffresDisponibles =
             new SalleDeFitness(offres, mock(Souscriptions.class));
 
     @Test
@@ -28,7 +29,7 @@ class ConsulterOffresDisponiblesTest {
 
         when(offres.disponibles()).thenReturn(List.of(offreAnnuelle, offreMensuelle));
 
-        assertThat(consulterOffresDisponibles.consulterOffresDisponibles()).isEqualTo(
+        assertThat(pourConsulterLesOffresDisponibles.consulterLesOffresDisponibles()).isEqualTo(
                 List.of(offreAnnuelle, offreMensuelle)
         );
     }

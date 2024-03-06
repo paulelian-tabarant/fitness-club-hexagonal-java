@@ -1,12 +1,12 @@
 package org.pauleliance.userside;
 
-import org.pauleliance.domain.ports.userside.SouscrireOffre;
+import org.pauleliance.domain.ports.userside.PourSouscrireÀUneOffre;
 
 public class SouscrireOffreCommandeTextuelle implements CommandeTextuelle {
-    private final SouscrireOffre souscrireOffre;
+    private final PourSouscrireÀUneOffre port;
 
-    public SouscrireOffreCommandeTextuelle(SouscrireOffre souscrireOffre) {
-        this.souscrireOffre = souscrireOffre;
+    public SouscrireOffreCommandeTextuelle(PourSouscrireÀUneOffre port) {
+        this.port = port;
     }
 
     @Override
@@ -14,6 +14,6 @@ public class SouscrireOffreCommandeTextuelle implements CommandeTextuelle {
         var nomClient = CommandeTextuelle.argumentÀ(instruction, 1);
         var identifiantOffre = CommandeTextuelle.argumentÀ(instruction, 2);
 
-        souscrireOffre.souscrireOffre(nomClient, identifiantOffre);
+        port.souscrireÀUneOffre(nomClient, identifiantOffre);
     }
 }
