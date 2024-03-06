@@ -19,14 +19,14 @@ public class PremièreItérationAcceptanceTest {
     void afficheChiffreAffairesAprèsCréationOffreEtSouscription() {
         var entrée = new EntréeTextuelle(sortie, salle, salle, salle, salle);
 
-        entrée.exécuter("offre annuelle_noel2024 30");
-        entrée.exécuter("offres");
+        entrée.interpréter("offre annuelle_noel2024 30");
+        entrée.interpréter("offres");
 
         verify(sortie).envoyer("annuelle_noel2024");
 
-        entrée.exécuter("souscrit Gilles annuelle_noel2024");
+        entrée.interpréter("souscrit Gilles annuelle_noel2024");
         // TODO: implémenter la partie server-side des souscriptions
-        entrée.exécuter("ca");
+        entrée.interpréter("ca");
 
         verify(sortie).envoyer("Chiffre d'affaires du mois : 30€");
     }

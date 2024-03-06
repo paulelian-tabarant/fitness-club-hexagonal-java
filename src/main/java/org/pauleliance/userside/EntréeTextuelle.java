@@ -14,7 +14,7 @@ public class EntréeTextuelle {
         commandeTextuelleFactory = new CommandeTextuelleFactory(pourCréerUneOffre, pourSouscrireÀUneOffre, pourConsulterLeChiffreDAffaires, pourConsulterLesOffresDisponibles, sortie);
     }
 
-    public void exécuter(String instruction) {
+    public void interpréter(String instruction) {
         String nomCommande = CommandeTextuelle.argumentÀ(instruction, 0);
 
         commandeTextuelleFactory.pour(nomCommande).exécuter(instruction);

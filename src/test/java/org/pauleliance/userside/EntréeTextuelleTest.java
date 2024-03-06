@@ -32,7 +32,7 @@ class EntréeTextuelleTest {
         var créerOffreCommande = "offre annuelle_noel2024 30";
 
         // quand
-        entréeTextuelle.exécuter(créerOffreCommande);
+        entréeTextuelle.interpréter(créerOffreCommande);
 
         // on a
         verify(pourCréerUneOffre).créerUneOffre("annuelle_noel2024", 30);
@@ -45,7 +45,7 @@ class EntréeTextuelleTest {
         var souscrireOffreCommande = "souscrit Gilles " + identifiantOffre;
 
         // quand
-        entréeTextuelle.exécuter(souscrireOffreCommande);
+        entréeTextuelle.interpréter(souscrireOffreCommande);
 
         // on a
         verify(pourSouscrireÀUneOffre).souscrireÀUneOffre("Gilles", identifiantOffre);
@@ -58,7 +58,7 @@ class EntréeTextuelleTest {
         when(pourConsulterLeChiffreDAffaires.consulterLeChiffreDAffaires()).thenReturn(30);
 
         // quand
-        entréeTextuelle.exécuter(chiffreDAffairesCommande);
+        entréeTextuelle.interpréter(chiffreDAffairesCommande);
 
         // on a
         verify(sortie).envoyer("Chiffre d'affaires du mois : 30€");
@@ -72,7 +72,7 @@ class EntréeTextuelleTest {
 
         when(pourConsulterLesOffresDisponibles.consulterLesOffresDisponibles()).thenReturn(List.of(annuelle, mensuelle));
 
-        entréeTextuelle.exécuter("offres");
+        entréeTextuelle.interpréter("offres");
 
         verify(sortie).envoyer(annuelle.code() + " " + mensuelle.code());
     }
@@ -82,7 +82,7 @@ class EntréeTextuelleTest {
     void nEnvoieRienQuandIlNYAPasDOffre() {
         when(pourConsulterLesOffresDisponibles.consulterLesOffresDisponibles()).thenReturn(List.of());
 
-        entréeTextuelle.exécuter("offres");
+        entréeTextuelle.interpréter("offres");
 
         verify(sortie, never()).envoyer(anyString());
     }
@@ -93,7 +93,7 @@ class EntréeTextuelleTest {
         var commandeInconnue = "demande_une_pizza 4 fromages";
 
         // quand on a
-        assertThatThrownBy(() -> entréeTextuelle.exécuter(commandeInconnue))
+        assertThatThrownBy(() -> entréeTextuelle.interpréter(commandeInconnue))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 }
