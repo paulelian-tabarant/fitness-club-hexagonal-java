@@ -9,7 +9,12 @@ import org.pauleliance.domain.ports.userside.PourSouscrireÀUneOffre;
 
 import java.util.List;
 
-public class SalleDeFitness implements PourCréerUneOffre, PourSouscrireÀUneOffre, PourConsulterLeChiffreDAffaires, PourConsulterLesOffresDisponibles {
+public class SalleDeFitness implements
+        PourCréerUneOffre,
+        PourSouscrireÀUneOffre,
+        PourConsulterLeChiffreDAffaires,
+        PourConsulterLesOffresDisponibles {
+
     private final Offres offres;
     private final Souscriptions souscriptions;
 

@@ -9,6 +9,7 @@ import org.pauleliance.domain.ports.serverside.Offres;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class OffresTest {
@@ -35,8 +36,10 @@ class OffresTest {
 
         offres.créer(codeQuiExisteDéjà, unPrix);
 
-        assertThrows(OffreExisteDéjàException.class, () -> {
+        assertThatThrownBy(() -> {
             offres.créer(codeQuiExisteDéjà, unPrix);
-        });
+        })
+                .isInstanceOf(OffreExisteDéjàException.class)
+                .hasMessage("L'offre " + codeQuiExisteDéjà + " existe déjà.");
     }
 }

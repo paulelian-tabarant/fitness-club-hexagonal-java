@@ -10,8 +10,17 @@ public class EntréeTextuelle {
 
     private final CommandeTextuelleFactory commandeTextuelleFactory;
 
-    public EntréeTextuelle(Sortie sortie, PourCréerUneOffre pourCréerUneOffre, PourSouscrireÀUneOffre pourSouscrireÀUneOffre, PourConsulterLeChiffreDAffaires pourConsulterLeChiffreDAffaires, PourConsulterLesOffresDisponibles pourConsulterLesOffresDisponibles) {
-        commandeTextuelleFactory = new CommandeTextuelleFactory(pourCréerUneOffre, pourSouscrireÀUneOffre, pourConsulterLeChiffreDAffaires, pourConsulterLesOffresDisponibles, sortie);
+    public EntréeTextuelle(Sortie sortie,
+                           PourCréerUneOffre pourCréerUneOffre,
+                           PourSouscrireÀUneOffre pourSouscrireÀUneOffre,
+                           PourConsulterLeChiffreDAffaires pourConsulterLeChiffreDAffaires,
+                           PourConsulterLesOffresDisponibles pourConsulterLesOffresDisponibles) {
+
+        this.commandeTextuelleFactory = new CommandeTextuelleFactory(pourCréerUneOffre,
+                pourSouscrireÀUneOffre,
+                pourConsulterLeChiffreDAffaires,
+                pourConsulterLesOffresDisponibles,
+                sortie);
     }
 
     public void interpréter(String instruction) {

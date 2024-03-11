@@ -15,20 +15,20 @@ public class CommandeTextuelleFactory {
     private final PourCréerUneOffre pourCréerUneOffre;
     private final PourSouscrireÀUneOffre pourSouscrireÀUneOffre;
     private final PourConsulterLeChiffreDAffaires pourConsulterLeChiffreDAffaires;
-    private final PourConsulterLesOffresDisponibles consulterOffres;
+    private final PourConsulterLesOffresDisponibles pourConsulterLesOffresDisponibles;
 
     private final Sortie sortie;
 
     public CommandeTextuelleFactory(PourCréerUneOffre pourCréerUneOffre,
                                     PourSouscrireÀUneOffre pourSouscrireÀUneOffre,
                                     PourConsulterLeChiffreDAffaires pourConsulterLeChiffreDAffaires,
-                                    PourConsulterLesOffresDisponibles consulterOffres,
+                                    PourConsulterLesOffresDisponibles pourConsulterLesOffresDisponibles,
                                     Sortie sortie) {
 
         this.pourCréerUneOffre = pourCréerUneOffre;
         this.pourSouscrireÀUneOffre = pourSouscrireÀUneOffre;
         this.pourConsulterLeChiffreDAffaires = pourConsulterLeChiffreDAffaires;
-        this.consulterOffres = consulterOffres;
+        this.pourConsulterLesOffresDisponibles = pourConsulterLesOffresDisponibles;
         this.sortie = sortie;
     }
 
@@ -38,7 +38,7 @@ public class CommandeTextuelleFactory {
         }
 
         if (commande.equals(CONSULTER_OFFRES_DISPONIBLES)) {
-            return new ConsulterOffresDisponiblesCommandeTextuelle(consulterOffres, sortie);
+            return new ConsulterOffresDisponiblesCommandeTextuelle(pourConsulterLesOffresDisponibles, sortie);
         }
 
         if (commande.equals(SOUSCRIRE_OFFRE)) {
